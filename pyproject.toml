@@ -30,9 +30,6 @@ classifiers = [
 
 python = "^3.10"
 
-# TODO: Remove these and add your library's requirements
-click = "*"
-minilog = "*"
 types-requests = "^2.28.11.13"
 
 [tool.poetry.dev-dependencies]
