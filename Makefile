@@ -18,10 +18,6 @@ dev: install .clean-test ## Continuously run all CI tasks when files chanage
 run: install ## Start the program
 	poetry run python $(PACKAGE)/__main__.py
 
-.PHONY: shell
-shell: install ## Launch an IPython session
-	poetry run ipython --ipython-dir=notebooks
-
 # SYSTEM DEPENDENCIES #########################################################
 
 .PHONY: doctor
@@ -55,8 +51,8 @@ endif
 
 .PHONY: format
 format: install
-	poetry run isort $(PACKAGE) tests notebooks
-	poetry run black $(PACKAGE) tests notebooks
+	poetry run isort $(PACKAGE) tests
+	poetry run black $(PACKAGE) tests
 	@ echo
 
 .PHONY: check

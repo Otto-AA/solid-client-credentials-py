@@ -77,12 +77,6 @@ Run the program:
 $ make run
 ```
 
-Launch an IPython session:
-
-```text
-$ make shell
-```
-
 ## Release Tasks
 
 Release to PyPI:
