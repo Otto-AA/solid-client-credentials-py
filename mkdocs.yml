@@ -1,0 +1,19 @@
+site_name: SolidClientCredentials
+site_description: Solid authentication with client credentials
+site_author: A_A
+
+repo_url: https://github.com/Otto-AA/solid-client-credentials-py
+edit_uri: https://github.com/Otto-AA/solid-client-credentials-py/edit/main/docs
+
+theme: readthedocs
+
+markdown_extensions:
+  - codehilite
+
+nav:
+  - Home: index.md
+  - Advanced: advanced.md
+  - About:
+    - Release Notes: about/changelog.md
+    - Contributor Guide: about/contributing.md
+    - License: about/license.md
