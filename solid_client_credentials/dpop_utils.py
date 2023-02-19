@@ -6,7 +6,6 @@ from uuid import uuid4
 import jwt
 import requests
 from jwcrypto import jwk
-
 from solid_client_credentials.access_token import AccessToken
 
 SIGNING_ALG = "ES256"
@@ -23,8 +22,11 @@ def refresh_access_token(
     client_id: str,
     client_secret: str,
     dpop_key: jwk.JWK,
+    refresh_before_expiration_seconds: int,
 ) -> AccessToken:
-    if current_token is None or current_token.is_expired():
+    if current_token is None or current_token.expires_within(
+        refresh_before_expiration_seconds
+    ):
         return request_access_token(token_endpoint, client_id, client_secret, dpop_key)
     return current_token
 
@@ -41,11 +43,9 @@ def request_access_token(
         data={"grant_type": "client_credentials", "scope": "webid"},
         timeout=5000,
     )
-    data = res.json()
-    access_token = data["access_token"]
-    expires_in = data["expires_in"]
-    # TODO calculate based on the decoded access tokens iat time instead of now()
-    expiration = datetime.datetime.now() + datetime.timedelta(seconds=expires_in)
+    access_token = res.json()["access_token"]
+    token_payload = jwt_decode_without_verification(access_token)
+    expiration = datetime.datetime.fromtimestamp(token_payload["exp"])
 
     return AccessToken(access_token, expiration=expiration)
 
@@ -74,6 +74,10 @@ def jwt_encode(payload: dict, key: jwk.JWK, headers: Optional[dict]) -> str:
     return encoded_jwt
 
 
-def jwt_decode(encoded_jwt: str, key: jwk.JWK) -> dict:
-    key_pem = key.export_to_pem(private_key=False, password=None)
-    return jwt.decode(encoded_jwt, key=key_pem, algorithms=[SIGNING_ALG])
+def jwt_decode_without_verification(encoded_jwt: str) -> dict:
+    return jwt.api_jwt.decode_complete(
+        encoded_jwt,
+        options={
+            "verify_signature": False,
+        },
+    )["payload"]

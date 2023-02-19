@@ -6,5 +6,7 @@ class AccessToken:
         self.value = token
         self.expiration = expiration
 
-    def is_expired(self) -> bool:
-        return self.expiration < datetime.datetime.now()
+    def expires_within(self, seconds: int) -> bool:
+        return self.expiration < datetime.datetime.now() + datetime.timedelta(
+            seconds=seconds
+        )
