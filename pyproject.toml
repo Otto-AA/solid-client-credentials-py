@@ -71,10 +71,6 @@ pytest-docker = {extras = ["docker-compose-v1"], version = "^1.0.1"}
 mkdocs = "^1.4.2"
 pytest-mock = "^3.10.0"
 
-[tool.poetry.scripts]
-
-SolidClientCredentials = "solid_client_credentials.cli:main"
-
 [tool.black]
 
 quiet = true
