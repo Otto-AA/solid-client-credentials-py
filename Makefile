@@ -82,7 +82,7 @@ PYTEST_RERUN_OPTIONS := --last-failed --exitfirst
 test: test-all ## Run unit and integration tests
 
 .PHONY: test-unit
-test-unit: install
+test-unit: install ## Run unit tests
 	@ ( mv $(FAILURES) $(FAILURES).bak || true ) > /dev/null 2>&1
 	poetry run pytest $(PACKAGE) $(PYTEST_OPTIONS)
 	@ ( mv $(FAILURES).bak $(FAILURES) || true ) > /dev/null 2>&1
@@ -91,7 +91,7 @@ ifndef DISABLE_COVERAGE
 endif
 
 .PHONY: test-int
-test-int: install
+test-int: install ## Run integration tests
 	@ if test -e $(FAILURES); then poetry run pytest tests $(PYTEST_RERUN_OPTIONS); fi
 	@ rm -rf $(FAILURES)
 	poetry run pytest tests $(PYTEST_OPTIONS)
