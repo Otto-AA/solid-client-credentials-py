@@ -9,13 +9,13 @@ from solid_client_credentials import SolidClientCredentialsAuth, DpopTokenProvid
 
 
 def main():
-    token_endpoint = sys.argv[1]
+    issuer_url = sys.argv[1]
     client_id = sys.argv[2]
     client_secret = sys.argv[3]
     url = sys.argv[4]
 
     token_provider = DpopTokenProvider(
-        token_endpoint=token_endpoint, client_id=client_id, client_secret=client_secret
+        issuer_url=issuer_url, client_id=client_id, client_secret=client_secret
     )
     auth = SolidClientCredentialsAuth(token_provider)
 

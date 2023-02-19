@@ -7,11 +7,11 @@ from tests.css_utils import CssAcount, get_client_credentials
 
 def describe_create_auth():
     def can_make_authenticated_request(expect, random_css_account: CssAcount):
-        token_endpoint = f"{random_css_account.css_base_url}/.oidc/token"
         credentials = get_client_credentials(random_css_account)
+        issuer = random_css_account.css_base_url
 
         token_provider = DpopTokenProvider(
-            token_endpoint=token_endpoint,
+            issuer_url=issuer,
             client_id=credentials.client_id,
             client_secret=credentials.client_secret,
         )

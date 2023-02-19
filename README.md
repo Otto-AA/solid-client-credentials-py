@@ -43,10 +43,8 @@ import requests
 client_id = 'your-id'
 client_secret = 'your-secret'
 
-# currently this library does not determine the token endpoint automatically
-# here are examples for ESS (/token) and CSS (/.oidc/token)
-token_endpoint = 'https://login.inrupt.com/token'
-token_endpoint = 'http://localhost:3000/.oidc/token'
+# The server that provides your account (where you login)
+issuer_url = 'https://login.inrupt.com'
 
 # create a token provider
 token_provider = DpopTokenProvider(
