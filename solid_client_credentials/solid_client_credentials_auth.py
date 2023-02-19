@@ -1,4 +1,3 @@
-import log
 from requests.auth import AuthBase
 from requests.models import PreparedRequest
 
@@ -17,9 +16,7 @@ class SolidClientCredentialsAuth(AuthBase):
         access_token = self._token_provider.get_uptodate_access_token()
         dpop_header = self._token_provider.get_dpop_header(r.url, method)
 
-        log.debug(f"adding authorization header for {r.url}: {access_token}")
         r.headers["Authorization"] = f"DPoP {access_token}"
-        log.debug(f"adding dpop header for {r.url}: {dpop_header}")
         r.headers["DPoP"] = dpop_header
 
         return r
