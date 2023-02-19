@@ -1,7 +1,7 @@
 [tool.poetry]
 
 name = "SolidClientCredentials"
-version = "0.0"
+version = "1.0"
 description = "Solid authentication with client credentials"
 
 packages = [{ include = "solid_client_credentials" }]
@@ -17,8 +17,7 @@ repository = "https://github.com/Otto-AA/solid-client-credentials-py"
 keywords = [
 ]
 classifiers = [
-    # TODO: update this list to match your application: https://pypi.org/pypi?%3Aaction=list_classifiers
-    "Development Status :: 1 - Planning",
+    "Development Status :: 5 - Production/Stable",
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
