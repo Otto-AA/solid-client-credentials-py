@@ -72,6 +72,9 @@ pync = { version = "*", platform = "darwin" }
 
 SolidClientCredentials = "solid_client_credentials.cli:main"
 
+[tool.poetry.group.dev.dependencies]
+pytest-docker = {extras = ["docker-compose-v1"], version = "^1.0.1"}
+
 [tool.black]
 
 quiet = true

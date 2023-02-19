@@ -17,11 +17,11 @@ def describe_generate_dpop_key_pair():
 def describe_jwt_signing():
     def can_sign_jwt(expect):
         key = dpop_utils.generate_dpop_key_pair()
-        jwt = dpop_utils.jwt_encode({"test": True}, key)
+        jwt = dpop_utils.jwt_encode({"test": True}, key, headers={"foo": "bar"})
         expect(jwt).isinstance(str)
 
     def can_verify_jwt(expect):
         key = dpop_utils.generate_dpop_key_pair()
-        jwt = dpop_utils.jwt_encode({"test": True}, key)
+        jwt = dpop_utils.jwt_encode({"test": True}, key, headers={"foo": "bar"})
         original = dpop_utils.jwt_decode(jwt, key)
         expect(original["test"]) == True
