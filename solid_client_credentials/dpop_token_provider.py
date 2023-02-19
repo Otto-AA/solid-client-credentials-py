@@ -2,9 +2,9 @@ from typing import Optional
 
 from solid_client_credentials.access_token import AccessToken
 from solid_client_credentials.dpop_utils import (
-    refresh_access_token,
-    generate_dpop_key_pair,
     create_dpop_header,
+    generate_dpop_key_pair,
+    refresh_access_token,
 )
 
 

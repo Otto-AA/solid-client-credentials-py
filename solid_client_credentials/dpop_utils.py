@@ -6,6 +6,7 @@ from uuid import uuid4
 import jwt
 import requests
 from jwcrypto import jwk
+
 from solid_client_credentials.access_token import AccessToken
 
 SIGNING_ALG = "ES256"

@@ -1,7 +1,8 @@
 """Sample unit test module using pytest-describe and expecter."""
-# pylint: disable=redefined-outer-name,unused-variable,expression-not-assigned,singleton-comparison
+# pylint: disable=redefined-outer-name,unused-variable,expression-not-assigned,singleton-comparison,E1101
 
 import datetime
+
 from solid_client_credentials import dpop_utils
 from solid_client_credentials.access_token import AccessToken
 
@@ -30,16 +31,16 @@ def describe_jwt_signing():
 
 
 def describe_access_token():
-    def creates_token_if_none(expect, mocker):
+    def creates_token_if_none(mocker):
         mocker.patch("solid_client_credentials.dpop_utils.request_access_token")
 
         dpop_utils.refresh_access_token(
             "", None, "client-1", "secret-1", "fake key", 10
         )
 
-        dpop_utils.request_access_token.assert_called_once()  # pylint: disable=E1101
+        dpop_utils.request_access_token.assert_called_once()  # type: ignore
 
-    def returns_token_if_valid(expect, mocker):
+    def returns_token_if_valid(expect):
         refresh_before_expiration_s = 10
         token = AccessToken(
             "token", datetime.datetime.now() + datetime.timedelta(seconds=60)
@@ -62,7 +63,7 @@ def describe_access_token():
             "", token, "client-1", "secret-1", "fake key", refresh_before_expiration_s
         )
 
-        dpop_utils.request_access_token.assert_called_once()  # pylint: disable=E1101
+        dpop_utils.request_access_token.assert_called_once()  # type: ignore
 
     def creates_token_if_token_expires_within_threshold(mocker):
         mocker.patch("solid_client_credentials.dpop_utils.request_access_token")
@@ -75,4 +76,4 @@ def describe_access_token():
             "", token, "client-1", "secret-1", "fake key", refresh_before_expiration_s
         )
 
-        dpop_utils.request_access_token.assert_called_once()  # pylint: disable=E1101
+        dpop_utils.request_access_token.assert_called_once()  # type: ignore
