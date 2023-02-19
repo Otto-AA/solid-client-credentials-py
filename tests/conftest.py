@@ -1,6 +1,7 @@
 """Integration tests configuration file."""
 
 # pylint: disable=unused-import
+import log
 import pytest
 import requests
 
@@ -27,9 +28,11 @@ def community_solid_server_url(docker_services):
     # we use localhost because CSS requires either https or localhost
     # with 127.0.0.1 (coming from docker_ip) it rejects because of insecurity
     url = f"http://localhost:{port}"
+    log.debug(f"waiting for CSS to come online at {url}")
     docker_services.wait_until_responsive(
-        timeout=30.0, pause=0.1, check=lambda: css_is_responsive(url)
+        timeout=120.0, pause=0.1, check=lambda: css_is_responsive(url)
     )
+    log.debug(f"CSS started at {url}")
     return url
 
 
