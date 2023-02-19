@@ -1,7 +1,7 @@
 # pylint: disable=redefined-outer-name,unused-variable,expression-not-assigned,singleton-comparison
 import requests
 
-from solid_client_credentials import SolidClientCredentialsAuth, DpopTokenProvider
+from solid_client_credentials import DpopTokenProvider, SolidClientCredentialsAuth
 from tests.css_utils import CssAcount, get_client_credentials
 
 

@@ -5,7 +5,7 @@ import sys
 
 import requests
 
-from solid_client_credentials import SolidClientCredentialsAuth, DpopTokenProvider
+from solid_client_credentials import DpopTokenProvider, SolidClientCredentialsAuth
 
 
 def main():

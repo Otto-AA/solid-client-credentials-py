@@ -3,7 +3,7 @@
 
 import datetime
 
-from solid_client_credentials import dpop_utils, AccessToken
+from solid_client_credentials import AccessToken, dpop_utils
 
 
 def describe_generate_dpop_key_pair():

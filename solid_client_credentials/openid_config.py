@@ -1,4 +1,5 @@
 from urllib.parse import urljoin
+
 import requests
 
 WELL_KNOWN_OPENID_CONFIG = ".well-known/openid-configuration"
