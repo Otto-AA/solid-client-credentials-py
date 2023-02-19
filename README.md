@@ -48,7 +48,7 @@ issuer_url = 'https://login.inrupt.com'
 
 # create a token provider
 token_provider = DpopTokenProvider(
-    token_endpoint=token_endpoint,
+    issuer_url=issuer_url,
     client_id=client_id,
     client_secret=client_secret
 )
