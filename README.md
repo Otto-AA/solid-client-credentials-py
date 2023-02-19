@@ -1,8 +1,6 @@
-# Overview [Everything WIP]
+# Solid Client Credentials
 
-Solid authentication with client credentials
-
-This project was generated with [cookiecutter](https://github.com/audreyr/cookiecutter) using [jacebrowning/template-python](https://github.com/jacebrowning/template-python).
+Solid authentication with client credentials.
 
 [![Unix Build Status](https://img.shields.io/github/actions/workflow/status/Otto-AA/solid-client-credentials-py/main.yml?branch=main&label=linux)](https://github.com/Otto-AA/solid-client-credentials-py/actions)
 [![Windows Build Status](https://img.shields.io/appveyor/ci/Otto-AA/solid-client-credentials-py.svg?label=windows)](https://ci.appveyor.com/project/Otto-AA/solid-client-credentials-py)
@@ -16,28 +14,64 @@ This project was generated with [cookiecutter](https://github.com/audreyr/cookie
 
 ### Requirements
 
-* Python 3.10+
+* Python 3.10+ (likely works with lower versions, but not tested)
 
 ### Installation
 
-Install it directly into an activated virtual environment:
-
-```text
+```bash
 $ pip install SolidClientCredentials
 ```
 
-or add it to your [Poetry](https://poetry.eustace.io/) project:
+## Use Case
 
-```text
-$ poetry add SolidClientCredentials
-```
+!!! note
+    Client credentials are not standardized, thus you can't run your application through any Solid pod. However, users from any provider can give your app access through standardized mechanisms (eg ACL).
+
+
+Client credentials allow you to authenticate with a server of your choice (ESS or CSS). After obtaining client credentials for a webId, you can use them to make authenticated requests on behalf of this account. You will be able to access all resources this webId has access to. If you want to access data of other users, they must grant access rights to your apps webId.
+
+See also: [https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/authenticate-nodejs-script/](https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/authenticate-nodejs-script/)
 
 ## Usage
 
-After installation, the package can imported:
+To use this package you first need valid client credentials (see [below](#obtaining-client-credentials)). Given the client credentials you can use it as follows:
 
-```text
-$ python
->>> import solid_client_credentials
->>> solid_client_credentials.__version__
+```python
+from solid_client_credentials import SolidClientCredentialsAuth, DpopTokenProvider
+import requests
+
+client_id = 'your-id'
+client_secret = 'your-secret'
+
+# currently this library does not determine the token endpoint automatically
+# here are examples for ESS (/token) and CSS (/.oidc/token)
+token_endpoint = 'https://login.inrupt.com/token'
+token_endpoint = 'http://localhost:3000/.oidc/token'
+
+# create a token provider
+token_provider = DpopTokenProvider(
+    token_endpoint=token_endpoint,
+    client_id=client_id,
+    client_secret=client_secret
+)
+# use the tokens with the requests library
+auth = SolidClientCredentialsAuth(token_provider)
+
+res = requests.get('https://example.org/private/stuff', auth=auth)
+print(res.text)
 ```
+
+## Obtaining client credentials
+
+This is currently only possible with ESS and CSS.
+
+### ESS
+
+ESS allows to manually obtain client credentials: [https://login.inrupt.com/registration.html](https://login.inrupt.com/registration.html)
+
+### CSS
+
+CSS allows to automatically obtain client credentials: [https://communitysolidserver.github.io/CommunitySolidServer/5.x/usage/client-credentials/](https://communitysolidserver.github.io/CommunitySolidServer/5.x/usage/client-credentials/)
+
+You can also look at `css_utils.py` to see how this maps to python.
+

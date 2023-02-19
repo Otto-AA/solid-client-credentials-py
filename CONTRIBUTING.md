@@ -31,23 +31,33 @@ $ make install
 
 ## Development Tasks
 
+### List commands
+
+To get a list of available commands run:
+
+```bash
+$ make
+```
+
 ### Manual
 
 Run the tests:
 
-```text
-$ make test
+```bash
+$ make test # all tests
+$ make test-unit
+$ make test-int
 ```
 
-Run static analysis:
+Run static analysis and automatically fix some errors:
 
-```text
+```bash
 $ make check
 ```
 
-Build the documentation:
+Serve the documentation locally:
 
-```text
+```bash
 $ make docs
 ```
 
@@ -55,32 +65,16 @@ $ make docs
 
 Keep all of the above tasks running on change:
 
-```text
+```bash
 $ make dev
 ```
 
 > In order to have OS X notifications, `brew install terminal-notifier`.
 
-## Continuous Integration
-
-The CI server will report overall build status:
-
-```text
-$ make ci
-```
-
-## Demo Tasks
-
-Run the program:
-
-```text
-$ make run
-```
-
 ## Release Tasks
 
 Release to PyPI:
 
-```text
+```bash
 $ make upload
 ```
