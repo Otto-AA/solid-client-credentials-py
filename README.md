@@ -28,7 +28,7 @@ $ pip install SolidClientCredentials
     Client credentials are not standardized, thus you can't run your application through any Solid pod. However, users from any provider can give your app access through standardized mechanisms (eg ACL).
 
 
-Client credentials allow you to authenticate with a server of your choice (ESS or CSS). After obtaining client credentials for a webId, you can use them to make authenticated requests on behalf of this account. You will be able to access all resources this webId has access to. If you want to access data of other users, they must grant access rights to your apps webId.
+You can use client credentials to create a server-side application that authenticates as a webId on ESS or CSS. After obtaining the client credentials for a webId, you can use them to make authenticated requests on behalf of this account. You will be able to access all resources this webId has access to. If you want to access data of other users, they must grant access rights to your apps webId.
 
 See also: [https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/authenticate-nodejs-script/](https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/authenticate-nodejs-script/)
 
