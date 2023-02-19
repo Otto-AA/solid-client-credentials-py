@@ -2,6 +2,7 @@
 import requests
 
 from solid_client_credentials import SolidClientCredentialsAuth
+from solid_client_credentials.dpop_token_provider import DpopTokenProvider
 from tests.css_utils import CssAcount, get_client_credentials
 
 
@@ -10,11 +11,12 @@ def describe_create_auth():
         token_endpoint = f"{random_css_account.css_base_url}/.oidc/token"
         credentials = get_client_credentials(random_css_account)
 
-        auth = SolidClientCredentialsAuth(
+        token_provider = DpopTokenProvider(
             token_endpoint=token_endpoint,
             client_id=credentials.client_id,
             client_secret=credentials.client_secret,
         )
+        auth = SolidClientCredentialsAuth(token_provider)
 
         private_url = f"{random_css_account.pod_base_url}profile/"
         res = requests.get(private_url, auth=auth, timeout=5000)

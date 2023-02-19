@@ -6,6 +6,7 @@ import sys
 import requests
 
 from solid_client_credentials import SolidClientCredentialsAuth
+from solid_client_credentials.dpop_token_provider import DpopTokenProvider
 
 
 def main():
@@ -14,14 +15,15 @@ def main():
     client_secret = sys.argv[3]
     url = sys.argv[4]
 
-    auth = SolidClientCredentialsAuth(
+    token_provider = DpopTokenProvider(
         token_endpoint=token_endpoint, client_id=client_id, client_secret=client_secret
     )
+    auth = SolidClientCredentialsAuth(token_provider)
 
     res_no_auth = requests.get(url, timeout=5000)
-    print(res_no_auth)
+    print(f"without authentication: {res_no_auth}")
     res_auth = requests.get(url, auth=auth, timeout=5000)
-    print(res_auth)
+    print(f"with authentication: {res_auth}")
     print(res_auth.text)
 
 

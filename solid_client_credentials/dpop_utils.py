@@ -22,7 +22,7 @@ def refresh_access_token(
     current_token: AccessToken | None,
     client_id: str,
     client_secret: str,
-    dpop_key: str,
+    dpop_key: jwk.JWK,
 ) -> AccessToken:
     if current_token is None or current_token.is_expired():
         return request_access_token(token_endpoint, client_id, client_secret, dpop_key)
@@ -30,7 +30,7 @@ def refresh_access_token(
 
 
 def request_access_token(
-    token_endpoint: str, client_id: str, client_secret: str, dpop_key: str
+    token_endpoint: str, client_id: str, client_secret: str, dpop_key: jwk.JWK
 ) -> AccessToken:
     res = requests.post(
         token_endpoint,
