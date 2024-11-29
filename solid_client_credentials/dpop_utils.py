@@ -1,6 +1,7 @@
 import datetime
 import math
 from typing import Optional
+from urllib.parse import urlsplit
 from uuid import uuid4
 
 import jwt
@@ -53,7 +54,7 @@ def request_access_token(
 
 def create_dpop_header(url: str, method: str, key: jwk.JWK) -> str:
     payload = {
-        "htu": url,
+        "htu": urlsplit(url)._replace(query="", fragment="").geturl(),
         "htm": method.upper(),
         "jti": str(uuid4()),
         "iat": math.floor(datetime.datetime.now(tz=datetime.timezone.utc).timestamp()),
