@@ -1,7 +1,7 @@
 version: '2'
 services:
   css:
-    image: "solidproject/community-server"
+    image: "solidproject/community-server:6.0.2"
     ports:
       - "3000:3000"
     command: --baseUrl http://localhost:3000/ -c config/default.json
