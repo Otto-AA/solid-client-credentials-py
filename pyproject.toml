@@ -32,7 +32,6 @@ python = "^3.10"
 types-requests = "^2.28.11.13"
 jwcrypto = "^1.4.2"
 pyjwt = "^2.6.0"
-pytest-docker = "^3.1.1"
 
 [tool.poetry.group.dev.dependencies]
 
@@ -53,6 +52,8 @@ pytest-describe = "^2.0"
 pytest-expecter = "^3.0"
 pytest-random = "*"
 pytest-cov = "^3.0"
+pytest-mock = "^3.10.0"
+pytest-docker = "^3.1.1"
 freezegun = "*"
 
 # Reports
@@ -68,7 +69,6 @@ MacFSEvents = { version = "*", platform = "darwin" }
 pync = { version = "*", platform = "darwin" }
 
 mkdocs = ">=1.4.2"
-pytest-mock = "^3.10.0"
 
 [tool.black]
 
