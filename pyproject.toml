@@ -43,7 +43,7 @@ isort = "^5.10"
 # Linters
 mypy = "^1.0"
 pydocstyle = "^6.1"
-pylint = "~2.15"
+pylint = "^3.0.0"
 wrapt = "*" # missing 'pylint' dependency
 
 # Testing
