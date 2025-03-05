@@ -3,9 +3,7 @@
 Solid authentication with client credentials.
 
 [![Unix Build Status](https://img.shields.io/github/actions/workflow/status/Otto-AA/solid-client-credentials-py/main.yml?branch=main&label=linux)](https://github.com/Otto-AA/solid-client-credentials-py/actions)
-[![Windows Build Status](https://img.shields.io/appveyor/ci/Otto-AA/solid-client-credentials-py.svg?label=windows)](https://ci.appveyor.com/project/Otto-AA/solid-client-credentials-py)
 [![Coverage Status](https://img.shields.io/codecov/c/gh/Otto-AA/solid-client-credentials-py)](https://codecov.io/gh/Otto-AA/solid-client-credentials-py)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/Otto-AA/solid-client-credentials-py.svg)](https://scrutinizer-ci.com/g/Otto-AA/solid-client-credentials-py)
 [![PyPI License](https://img.shields.io/pypi/l/SolidClientCredentials.svg)](https://pypi.org/project/SolidClientCredentials)
 [![PyPI Version](https://img.shields.io/pypi/v/SolidClientCredentials.svg)](https://pypi.org/project/SolidClientCredentials)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/SolidClientCredentials.svg?color=orange)](https://pypistats.org/packages/SolidClientCredentials)
