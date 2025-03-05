@@ -36,7 +36,7 @@ To use this package you first need valid client credentials (see [below](#obtain
 
 ```python
 from solid_client_credentials import SolidClientCredentialsAuth, DpopTokenProvider
-import requests
+import requests # or httpx
 
 client_id = 'your-id'
 client_secret = 'your-secret'
@@ -50,7 +50,7 @@ token_provider = DpopTokenProvider(
     client_id=client_id,
     client_secret=client_secret
 )
-# use the tokens with the requests library
+# use the tokens with the requests (or httpx) library
 auth = SolidClientCredentialsAuth(token_provider)
 
 res = requests.get('https://example.org/private/stuff', auth=auth)
