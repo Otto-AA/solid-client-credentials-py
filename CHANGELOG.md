@@ -7,3 +7,7 @@ Initial release
 ## 1.0.2 (2024-12-09)
 
 - automatically remove query and fragment from url when creating DPoP header
+
+## 1.0.3 (2025-03-05)
+
+- `SolidClientCredentialsAuth` supports httpx

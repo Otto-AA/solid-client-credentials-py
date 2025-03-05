@@ -13,8 +13,12 @@ class SolidClientCredentialsAuth(AuthBase):
         if not r.url:
             raise Exception(f"Unexpected request without url: {r}")
 
+        # for httpx, r.url is an URL object and not a string
+        # so we convert it here
+        url = str(r.url)
+
         access_token = self._token_provider.get_uptodate_access_token()
-        dpop_header = self._token_provider.get_dpop_header(r.url, method)
+        dpop_header = self._token_provider.get_dpop_header(url, method)
 
         r.headers["Authorization"] = f"DPoP {access_token}"
         r.headers["DPoP"] = dpop_header
